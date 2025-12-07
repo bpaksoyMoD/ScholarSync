@@ -21,6 +21,13 @@ class ScraperService {
             });
 
             await browser.close();
+
+            // Save to Database
+            const db = require('./database');
+            data.dates.forEach(date => {
+                db.addDeadline({ university: data.title, date: date, source_url: url });
+            });
+
             return data;
         } catch (error) {
             console.error('Scraping failed:', error);

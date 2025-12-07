@@ -13,9 +13,11 @@ app.use(express.json());
 // Routes
 const scraperRoutes = require('./routes/scraper');
 const emailRoutes = require('./routes/email');
+const applicationRoutes = require('./routes/applications');
 
 app.use('/api/deadlines', scraperRoutes);
 app.use('/api/email', emailRoutes);
+app.use('/api/applications', applicationRoutes);
 
 app.get('/', (req, res) => {
     res.send('ScholarSync Agent Brain is Active 🧠');

@@ -121,3 +121,6 @@ dist
 # Editor
 .idea
 .vscode
+
+# SQLite
+*.db
