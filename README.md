@@ -1,73 +1,57 @@
-# React + TypeScript + Vite
+# ScholarSync - AI College Application Agent
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+ScholarSync is an AI-powered "live-in agent" designed to assist international students with their US college applications. It features an OS-like interface, deadline tracking, essay coaching, and automated email outreach.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+-   **Dashboard**: A central command center with real-time updates on deadlines and emails.
+-   **Application Tracker**: Kanban-style board to manage application statuses (Researching, In Progress, Submitted).
+-   **Essay Coach**: AI-simulated chat interface for essay feedback and brainstorming.
+-   **Student Profile**: Manage your academic profile and get automated college matches.
+-   **"Live-in" Agent**: Runs as a desktop application (Electron) with a background Node.js "Brain" for web scraping and automation.
 
-## React Compiler
+## Prerequisites
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+-   **Node.js**: Version 18 or higher.
+-   **npm**: Included with Node.js.
 
-## Expanding the ESLint configuration
+## Installation
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+1.  Clone the repository:
+    ```bash
+    git clone https://github.com/bpaksoyMoD/ScholarSync.git
+    cd ScholarSync
+    ```
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+2.  Install dependencies:
+    ```bash
+    npm install
+    ```
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Running the Application
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+To start the full desktop application (Frontend + Backend + Electron):
+
+```bash
+npm run electron
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+This command will:
+1.  Start the Vite dev server for the React frontend.
+2.  Launch the Electron desktop window.
+3.  Spawn the Node.js backend server (The "Brain") in the background.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Development
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+If you want to run the web interface only (without Electron):
+
+```bash
+npm run dev
 ```
+Open [http://localhost:5173](http://localhost:5173) in your browser.
+
+## Project Structure
+
+-   `src/`: React frontend code.
+-   `backend/`: Node.js server code (Scraper, Emailer).
+-   `electron/`: Electron main and preload scripts.
